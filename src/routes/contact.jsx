@@ -1,6 +1,7 @@
 import { Form , useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export async function loader({ params }){
   const contact = await getContact(params.contactId)
   return { contact }

@@ -1,4 +1,4 @@
-import { Outlet, Link , useLoaderData, Form, redirect, NavLink} from "react-router-dom";
+import { Outlet , useLoaderData, Form, redirect, NavLink, useNavigation} from "react-router-dom";
 import {getContacts, createContact} from '../contacts'
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -17,6 +17,7 @@ export async function loader(){
 
 export default function Root() {
     const {contacts} = useLoaderData()
+    const navigation = useNavigation()
     return (
       <>
         <div id="sidebar">
@@ -78,7 +79,10 @@ export default function Root() {
           )}
           </nav>
         </div>
-        <div id="detail">
+        <div
+         id="detail"
+         className={navigation.state === 'loading' ? 'loading' : ''}
+         >
           <Outlet />
         </div>
       </>
